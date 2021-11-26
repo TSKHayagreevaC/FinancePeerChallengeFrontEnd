@@ -62,6 +62,7 @@ class Home extends Component {
     };
     const newEntriesList = [...entriesList, newEntry];
     this.setState({ entriesList: newEntriesList });
+    alert(`New Entry With The Name: ${newTitle} Is Added To The List`);
   };
 
   onChangeBody = (event) => {
@@ -101,11 +102,17 @@ class Home extends Component {
   updateEntriesList = (newEntry) => {
     const { entriesList } = this.state;
     const updatedEntriesList = entriesList;
+    const currentEntry = entriesList.find(
+      (eachItem) => eachItem.id === newEntry.id
+    );
     const indexOfEntry = entriesList.findIndex(
       (eachItem) => eachItem.id === newEntry.id
     );
     updatedEntriesList.splice(indexOfEntry, 1, newEntry);
     this.setState({ entriesList: updatedEntriesList });
+    alert(
+      `Entry With The Name: "${currentEntry.title}" Is Successfully Updated`
+    );
   };
 
   render() {
