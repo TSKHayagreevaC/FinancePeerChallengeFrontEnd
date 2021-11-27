@@ -75,27 +75,33 @@ class Home extends Component {
 
   addNewEntryForm = () => {
     return (
-      <form className="add-entry-form" onSubmit={this.onSubmitAddNewEntryForm}>
-        <label className="add-entry-form-label" htmlFor="addTitle">
-          TITLE
-        </label>
-        <input
-          className="add-entry-form-input"
-          id="addTitle"
-          onChange={this.onChangeTitle}
-        />
-        <label className="add-entry-form-label" htmlFor="addBody">
-          BODY
-        </label>
-        <input
-          className="add-entry-form-input"
-          id="addBody"
-          onChange={this.onChangeBody}
-        />
-        <button className="add-entry-form-submit-button" type="submit">
-          Add Entry
-        </button>
-      </form>
+      <>
+        <h1 className="app-heading">FinancePeer</h1>
+        <form
+          className="add-entry-form"
+          onSubmit={this.onSubmitAddNewEntryForm}
+        >
+          <label className="add-entry-form-label" htmlFor="addTitle">
+            TITLE
+          </label>
+          <input
+            className="add-entry-form-input"
+            id="addTitle"
+            onChange={this.onChangeTitle}
+          />
+          <label className="add-entry-form-label" htmlFor="addBody">
+            BODY
+          </label>
+          <input
+            className="add-entry-form-input"
+            id="addBody"
+            onChange={this.onChangeBody}
+          />
+          <button className="add-entry-form-submit-button" type="submit">
+            Add Entry
+          </button>
+        </form>
+      </>
     );
   };
 
@@ -115,7 +121,7 @@ class Home extends Component {
     );
   };
 
-  render() {
+  renderEntriesList = () => {
     const { entriesList } = this.state;
     return (
       <div className="home-bg-container">
@@ -150,6 +156,10 @@ class Home extends Component {
         </ul>
       </div>
     );
+  };
+
+  render() {
+    return <div className>{this.renderEntriesList()}</div>;
   }
 }
 

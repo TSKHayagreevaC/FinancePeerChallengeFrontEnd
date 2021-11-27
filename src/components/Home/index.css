@@ -10,6 +10,14 @@
   align-items: center;
 }
 
+.app-heading {
+  font-family: "Courier New", Courier, monospace;
+  margin: 15px 0px 5px 0px;
+  font-size: 40px;
+  width: 100%;
+  text-align: center;
+}
+
 .home-entries-list {
   list-style: none;
   padding: 0px;
