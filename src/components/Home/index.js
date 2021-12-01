@@ -3,6 +3,7 @@ import React from "react";
 import { ImCross } from "react-icons/im";
 import Popup from "reactjs-popup";
 
+import Header from "../Header";
 import ListItem from "../ListItem";
 
 import "./index.css";
@@ -124,7 +125,7 @@ class Home extends Component {
   renderEntriesList = () => {
     const { entriesList } = this.state;
     return (
-      <div className="home-bg-container">
+      <div className="home-list-container">
         <Popup
           className="popup-content"
           trigger={
@@ -159,7 +160,12 @@ class Home extends Component {
   };
 
   render() {
-    return <div className>{this.renderEntriesList()}</div>;
+    return (
+      <>
+        <Header />
+        <div className="home-bg-container">{this.renderEntriesList()}</div>
+      </>
+    );
   }
 }
 

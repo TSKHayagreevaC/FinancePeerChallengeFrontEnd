@@ -2,6 +2,8 @@ import { Component } from "react";
 import { Link } from "react-router-dom";
 import Loader from "react-loader-spinner";
 
+import Header from "../Header";
+
 import "./index.css";
 
 const apiConstants = {
@@ -106,47 +108,48 @@ class Register extends Component {
     }
   };
 
-  renderRegistrationForm = () => (
-    <div className="registration-form-container">
-      <h1 className="registration-form-heading">Register Here</h1>
-      <form
-        className="registration-form"
-        onSubmit={this.onSubmitRegistrationForm}
-      >
-        <label
-          className="registration-form-label"
-          htmlFor="registrationFormUsername"
-        >
-          Username
-        </label>
-        <input
-          type="text"
-          className="registration-form-input"
-          id="registrationFormUsername"
-          onChange={this.onChangeUsername}
-        />
-        <label
-          className="registration-form-label"
-          htmlFor="registrationFormPassword"
-        >
-          Password
-        </label>
-        <input
-          type="password"
-          className="registration-form-input"
-          id="registrationFormPassword"
-          onChange={this.onChangePassword}
-        />
-        <button type="submit" className="registration-form-submit-button">
-          Register
-        </button>
-      </form>
-      {this.renderRegistrationResponse()}
-    </div>
-  );
-
   render() {
-    return this.renderRegistrationForm();
+    return (
+      <>
+        <Header />
+        <div className="registration-form-container">
+          <h1 className="registration-form-heading">Register Here</h1>
+          <form
+            className="registration-form"
+            onSubmit={this.onSubmitRegistrationForm}
+          >
+            <label
+              className="registration-form-label"
+              htmlFor="registrationFormUsername"
+            >
+              Username
+            </label>
+            <input
+              type="text"
+              className="registration-form-input"
+              id="registrationFormUsername"
+              onChange={this.onChangeUsername}
+            />
+            <label
+              className="registration-form-label"
+              htmlFor="registrationFormPassword"
+            >
+              Password
+            </label>
+            <input
+              type="password"
+              className="registration-form-input"
+              id="registrationFormPassword"
+              onChange={this.onChangePassword}
+            />
+            <button type="submit" className="registration-form-submit-button">
+              Register
+            </button>
+          </form>
+          {this.renderRegistrationResponse()}
+        </div>
+      </>
+    );
   }
 }
 

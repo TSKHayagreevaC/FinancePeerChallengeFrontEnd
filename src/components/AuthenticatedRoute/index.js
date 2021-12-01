@@ -1,4 +1,12 @@
-import { Route } from "react-router-dom";
-import { Navigate } from "react-router";
+import { Route, Redirect } from "react-router-dom";
+import Cookies from "js-cookie";
 
-import "./index.css";
+const AuthenticatedRoute = (props) => {
+  const jwtToken = Cookies.get("jwt_token");
+  if (jwtToken === undefined) {
+    return <Redirect to="/login" />;
+  }
+  return <Route {...props} />;
+};
+
+export default AuthenticatedRoute;

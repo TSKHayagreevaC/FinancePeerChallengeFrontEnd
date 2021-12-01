@@ -1,13 +1,12 @@
-.App {
-  min-height: 100vh;
-  display: flex;
-  flex-wrap: wrap;
+* {
+  box-sizing: border-box;
 }
 
-.app-heading {
-  font-family: "Courier New", Courier, monospace;
-  margin: 15px 0px 5px 0px;
-  font-size: 40px;
-  width: 100%;
-  text-align: center;
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

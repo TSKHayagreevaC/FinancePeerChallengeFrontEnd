@@ -1,10 +1,9 @@
 import { Component } from "react";
-import { createBrowserHistory } from "history";
+import { Redirect } from "react-router-dom";
 import Cookies from "js-cookie";
+import { Loader } from "react-loader-spinner";
 
 import "./index.css";
-
-const history = createBrowserHistory();
 
 const apiConstants = {
   initial: "INITIAL",
@@ -21,6 +20,12 @@ class Login extends Component {
     loginApiStatus: apiConstants.initial,
   };
 
+  renderLoader = () => (
+    <div className="react-loader-spinner">
+      <Loader type="TailSpin" color="#00BFFF" height={80} width={80} />
+    </div>
+  );
+
   onLoginFailure = (errorMessage) => {
     this.setState({
       loginApiStatus: apiConstants.failure,
@@ -30,7 +35,7 @@ class Login extends Component {
 
   onSuccessFullLogin = (jwtToken) => {
     Cookies.set("jwt_token", jwtToken, { expires: 30, path: "/" });
-    history.replace("/");
+    this.setState({ loginApiStatus: apiConstants.success });
   };
 
   onSubmitLoginForm = async (event) => {
@@ -67,35 +72,53 @@ class Login extends Component {
     this.setState({ password: event.target.value });
   };
 
+  renderLoginForm = () => (
+    <div className="login-form-container">
+      <h1 className="login-form-heading">Login</h1>
+      <form className="login-form" onSubmit={this.onSubmitLoginForm}>
+        <label className="login-form-label" htmlFor="loginFormUsername">
+          Username
+        </label>
+        <input
+          type="text"
+          className="login-form-input"
+          id="loginFormUsername"
+          onChange={this.onChangeUsername}
+        />
+        <label className="login-form-label" htmlFor="loginFormPassword">
+          Password
+        </label>
+        <input
+          type="password"
+          className="login-form-input"
+          id="loginFormPassword"
+          onChange={this.onChangePassword}
+        />
+        <button type="submit" className="login-form-submit-button">
+          Login
+        </button>
+      </form>
+    </div>
+  );
+
+  renderLoginPage = () => {
+    const { loginApiStatus } = this.state;
+    switch (loginApiStatus) {
+      case apiConstants.success:
+        return <Redirect to="/" />;
+      case apiConstants.inProgress:
+        return this.renderLoader();
+      default:
+        return this.renderLoginForm();
+    }
+  };
+
   render() {
-    return (
-      <div className="login-form-container">
-        <h1 className="login-form-heading">Login</h1>
-        <form className="login-form" onSubmit={this.onSubmitLoginForm}>
-          <label className="login-form-label" htmlFor="loginFormUsername">
-            Username
-          </label>
-          <input
-            type="text"
-            className="login-form-input"
-            id="loginFormUsername"
-            onChange={this.onChangeUsername}
-          />
-          <label className="login-form-label" htmlFor="loginFormPassword">
-            Password
-          </label>
-          <input
-            type="password"
-            className="login-form-input"
-            id="loginFormPassword"
-            onChange={this.onChangePassword}
-          />
-          <button type="submit" className="login-form-submit-button">
-            Login
-          </button>
-        </form>
-      </div>
-    );
+    const jwtToken = Cookies.get("jwt_token");
+    if (jwtToken === undefined) {
+      return this.renderLoginPage();
+    }
+    return <Redirect to="/" />;
   }
 }
 

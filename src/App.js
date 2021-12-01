@@ -1,6 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Navigate } from "react-router";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 import "./App.css";
 
@@ -8,20 +7,19 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import NotFound from "./components/NotFound";
+import AutheticatedRoute from "./components/AuthenticatedRoute";
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/login" element={<Login />} />
-          <Route exact path="/register" element={<Register />} />
-          <Route exact path="/not-found" element={<NotFound />} />
-          <Route path="*" element={<Navigate to="/not-found" />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/login" component={Login} />
+        <AutheticatedRoute exact path="/" component={Home} />
+        <Route exact path="/register" component={Register} />
+        <Route exact path="/not-found" component={NotFound} />
+        <Redirect to="/not-found" />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
