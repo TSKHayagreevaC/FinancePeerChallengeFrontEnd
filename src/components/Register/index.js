@@ -1,8 +1,5 @@
 import { Component } from "react";
-import { Link } from "react-router-dom";
 import Loader from "react-loader-spinner";
-
-import Header from "../Header";
 
 import "./index.css";
 
@@ -53,6 +50,11 @@ class Register extends Component {
     }
   };
 
+  loginAfterRegistration = () => {
+    const { setStateToInitial } = this.props;
+    setStateToInitial();
+  };
+
   onChangeUsername = (event) => {
     this.setState({ username: event.target.value });
   };
@@ -74,11 +76,13 @@ class Register extends Component {
         <h1 className="registration-response-heading">
           {registrationResponseMessage}
         </h1>
-        <Link to="/login">
-          <button type="button" className="login-button">
-            Login
-          </button>
-        </Link>
+        <button
+          type="button"
+          className="login-button"
+          onClick={this.loginAfterRegistration}
+        >
+          Login
+        </button>
       </div>
     );
   };
@@ -111,7 +115,6 @@ class Register extends Component {
   render() {
     return (
       <>
-        <Header />
         <div className="registration-form-container">
           <h1 className="registration-form-heading">Register Here</h1>
           <form

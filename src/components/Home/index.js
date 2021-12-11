@@ -1,7 +1,9 @@
 import { Component } from "react";
 import React from "react";
-import { ImCross } from "react-icons/im";
 import Popup from "reactjs-popup";
+import Cookies from "js-cookie";
+
+import { ImCross } from "react-icons/im";
 
 import Header from "../Header";
 import ListItem from "../ListItem";
@@ -18,6 +20,8 @@ const apiConstants = {
 class Home extends Component {
   state = {
     apiStatus: apiConstants.initial,
+    selectedFile: null,
+    uploadResponse: "",
     entriesList: [],
     id: "",
     userId: "",
@@ -72,6 +76,46 @@ class Home extends Component {
 
   onChangeTitle = (event) => {
     this.setState({ newTitle: event.target.value });
+  };
+
+  selectFileToBeUploaded = (event) => {
+    console.log(event.target.files[0]);
+    this.setState({ selectedFile: event.target.files[0] });
+  };
+
+  uploadSelectedFile = async (event) => {
+    const { selectedFile } = this.state;
+    console.log(selectedFile);
+    const jwtToken = Cookies.get("jwt_token");
+    const uploadUrl = "http://localhost:3001/uploadFile/";
+    const options = {
+      method: "POST",
+      headers: {
+        authorization: `bearer ${jwtToken}`,
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: selectedFile,
+    };
+    const uploadFileResponse = await fetch(uploadUrl, options);
+    const uploadFileResponseData = await uploadFileResponse.json();
+    this.setState({ uploadResponse: uploadFileResponseData.msg });
+  };
+
+  selectAndUploadFileToServer = () => {
+    return (
+      <>
+        <input
+          type="file"
+          name="sampleFile"
+          accept="application/json"
+          onChange={this.selectFileToBeUploaded}
+        />
+        <button type="submit" onClick={this.uploadSelectedFile}>
+          upload
+        </button>
+      </>
+    );
   };
 
   addNewEntryForm = () => {
@@ -160,10 +204,15 @@ class Home extends Component {
   };
 
   render() {
+    const { uploadResponse } = this.state;
     return (
       <>
         <Header />
-        <div className="home-bg-container">{this.renderEntriesList()}</div>
+        <div className="home-bg-container">
+          {this.selectAndUploadFileToServer()}
+          <p>{uploadResponse}</p>
+          {this.renderEntriesList()}
+        </div>
       </>
     );
   }

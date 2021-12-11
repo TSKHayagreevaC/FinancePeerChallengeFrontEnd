@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import Cookies from "js-cookie";
 import { Loader } from "react-loader-spinner";
 
@@ -11,6 +11,7 @@ class Login extends Component {
     password: "",
     loginResponseMessage: "",
     showLoginErrorMessage: false,
+    isMember: false,
   };
 
   renderLoader = () => (
@@ -101,12 +102,8 @@ class Login extends Component {
   };
 
   render() {
-    const jwtToken = Cookies.get("jwt_token");
-    if (jwtToken !== undefined) {
-      return <Redirect to="/" />;
-    }
     return this.renderLoginForm();
   }
 }
 
-export default Login;
+export default withRouter(Login);

@@ -13,8 +13,6 @@ const Header = (props) => {
   return (
     <div className="header-bg-container">
       <Link to="/">Home</Link>
-      <Link to="/login">Login</Link>
-      <Link to="/register">Register</Link>
       <button className="logout-button" type="button" onClick={removeJwtToken}>
         Logout
       </button>
