@@ -22,23 +22,22 @@ class Home extends Component {
     apiStatus: apiConstants.initial,
     selectedFile: null,
     uploadResponse: "",
+    isUploadedSuccessfully: false,
     entriesList: [],
-    id: "",
-    userId: "",
+    newEntryId: "",
+    newEntryUserId: "",
     newTitle: "",
     newBody: "",
   };
 
-  componentDidMount() {
-    this.getEntriesData();
-  }
-
   getEntriesData = async () => {
     this.setState({ apiStatus: apiConstants.inProgress });
-    const apiUrl = "http://localhost:3001/entriesData";
+    const jwtToken = Cookies.get("jwt_token");
+    const apiUrl = "https://srikanthdisplaydata.herokuapp.com/getEntriesData/";
     const options = {
       method: "GET",
       headers: {
+        authorization: `bearer ${jwtToken}`,
         "Content-Type": "application / json",
       },
     };
@@ -56,18 +55,30 @@ class Home extends Component {
 
   onSubmitAddNewEntryForm = (event) => {
     event.preventDefault();
-    const { entriesList, newTitle, newBody } = this.state;
-    const entriesListLength = entriesList.length;
-    const newItemUserId = entriesList[entriesListLength - 1].userId + 1;
+    const {
+      entriesList,
+      newEntryId,
+      newEntryUserId,
+      newTitle,
+      newBody,
+    } = this.state;
     const newEntry = {
-      id: entriesListLength + 1,
-      userId: newItemUserId,
+      id: newEntryId,
+      userId: newEntryUserId,
       title: newTitle,
       body: newBody,
     };
     const newEntriesList = [...entriesList, newEntry];
     this.setState({ entriesList: newEntriesList });
     alert(`New Entry With The Name: ${newTitle} Is Added To The List`);
+  };
+
+  onChangeEntryId = (event) => {
+    this.setState({ newEntryId: event.target.value });
+  };
+
+  onChangeUserId = (event) => {
+    this.setState({ newEntryUserId: event.target.value });
   };
 
   onChangeBody = (event) => {
@@ -79,15 +90,13 @@ class Home extends Component {
   };
 
   selectFileToBeUploaded = (event) => {
-    console.log(event.target.files[0]);
     this.setState({ selectedFile: event.target.files[0] });
   };
 
   uploadSelectedFile = async (event) => {
     const { selectedFile } = this.state;
-    console.log(selectedFile);
     const jwtToken = Cookies.get("jwt_token");
-    const uploadUrl = "http://localhost:3001/uploadFile/";
+    const uploadUrl = "https://srikanthdisplaydata.herokuapp.com/uploadFile/";
     const options = {
       method: "POST",
       headers: {
@@ -99,12 +108,15 @@ class Home extends Component {
     };
     const uploadFileResponse = await fetch(uploadUrl, options);
     const uploadFileResponseData = await uploadFileResponse.json();
-    this.setState({ uploadResponse: uploadFileResponseData.msg });
+    this.setState({
+      uploadResponse: uploadFileResponseData.msg,
+      isUploadedSuccessfully: true,
+    });
   };
 
   selectAndUploadFileToServer = () => {
     return (
-      <>
+      <div>
         <input
           type="file"
           name="sampleFile"
@@ -114,7 +126,7 @@ class Home extends Component {
         <button type="submit" onClick={this.uploadSelectedFile}>
           upload
         </button>
-      </>
+      </div>
     );
   };
 
@@ -126,6 +138,22 @@ class Home extends Component {
           className="add-entry-form"
           onSubmit={this.onSubmitAddNewEntryForm}
         >
+          <label className="add-entry-form-label" htmlFor="entryId">
+            ENTRY ID
+          </label>
+          <input
+            className="add-entry-form-input"
+            id="addId"
+            onChange={this.onChangeEntryId}
+          />
+          <label className="add-entry-form-label" htmlFor="userId">
+            USER ID
+          </label>
+          <input
+            className="add-entry-form-input"
+            id="userId"
+            onChange={this.onChangeUserId}
+          />
           <label className="add-entry-form-label" htmlFor="addTitle">
             TITLE
           </label>
@@ -162,7 +190,7 @@ class Home extends Component {
     updatedEntriesList.splice(indexOfEntry, 1, newEntry);
     this.setState({ entriesList: updatedEntriesList });
     alert(
-      `Entry With The Name: "${currentEntry.title}" Is Successfully Updated`
+      `Entry With The Title: "${currentEntry.title}" Is Going To Be Updated`
     );
   };
 
@@ -204,13 +232,17 @@ class Home extends Component {
   };
 
   render() {
-    const { uploadResponse } = this.state;
+    const { uploadResponse, isUploadedSuccessfully } = this.state;
     return (
       <>
         <Header />
         <div className="home-bg-container">
-          {this.selectAndUploadFileToServer()}
           <p>{uploadResponse}</p>
+          {isUploadedSuccessfully ? (
+            <button onClick={this.getEntriesData}>display uploaded data</button>
+          ) : (
+            this.selectAndUploadFileToServer()
+          )}
           {this.renderEntriesList()}
         </div>
       </>

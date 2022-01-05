@@ -26,7 +26,8 @@ class Register extends Component {
       username: username,
       password: password,
     };
-    const registrationUrl = "http://localhost:3001/register/";
+    const registrationUrl =
+      "https://srikanthdisplaydata.herokuapp.com/register/";
     const options = {
       method: "POST",
       headers: {
@@ -114,7 +115,7 @@ class Register extends Component {
 
   render() {
     return (
-      <>
+      <div>
         <div className="registration-form-container">
           <h1 className="registration-form-heading">Register Here</h1>
           <form
@@ -151,7 +152,7 @@ class Register extends Component {
           </form>
           {this.renderRegistrationResponse()}
         </div>
-      </>
+      </div>
     );
   }
 }

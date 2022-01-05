@@ -40,7 +40,7 @@ class Login extends Component {
       username: username,
       password: password,
     };
-    const loginUrl = "http://localhost:3001/login/";
+    const loginUrl = "https://srikanthdisplaydata.herokuapp.com/login/";
     const options = {
       method: "POST",
       headers: {
