@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/FinancePeerChallengeFrontEnd/static/css/main.10535255.chunk.css",
-    "main.js": "/FinancePeerChallengeFrontEnd/static/js/main.02e55181.chunk.js",
-    "main.js.map": "/FinancePeerChallengeFrontEnd/static/js/main.02e55181.chunk.js.map",
-    "runtime-main.js": "/FinancePeerChallengeFrontEnd/static/js/runtime-main.3a4a5da0.js",
-    "runtime-main.js.map": "/FinancePeerChallengeFrontEnd/static/js/runtime-main.3a4a5da0.js.map",
-    "static/js/2.a68f05aa.chunk.js": "/FinancePeerChallengeFrontEnd/static/js/2.a68f05aa.chunk.js",
-    "static/js/2.a68f05aa.chunk.js.map": "/FinancePeerChallengeFrontEnd/static/js/2.a68f05aa.chunk.js.map",
-    "static/js/3.89bf28b3.chunk.js": "/FinancePeerChallengeFrontEnd/static/js/3.89bf28b3.chunk.js",
-    "static/js/3.89bf28b3.chunk.js.map": "/FinancePeerChallengeFrontEnd/static/js/3.89bf28b3.chunk.js.map",
+    "main.css": "/FinancePeerChallengeFrontEnd/static/css/main.9e4e714a.chunk.css",
+    "main.js": "/FinancePeerChallengeFrontEnd/static/js/main.e8a8d59d.chunk.js",
+    "main.js.map": "/FinancePeerChallengeFrontEnd/static/js/main.e8a8d59d.chunk.js.map",
+    "runtime-main.js": "/FinancePeerChallengeFrontEnd/static/js/runtime-main.99cfd541.js",
+    "runtime-main.js.map": "/FinancePeerChallengeFrontEnd/static/js/runtime-main.99cfd541.js.map",
+    "static/js/2.c1cf1f0b.chunk.js": "/FinancePeerChallengeFrontEnd/static/js/2.c1cf1f0b.chunk.js",
+    "static/js/2.c1cf1f0b.chunk.js.map": "/FinancePeerChallengeFrontEnd/static/js/2.c1cf1f0b.chunk.js.map",
+    "static/js/3.69472628.chunk.js": "/FinancePeerChallengeFrontEnd/static/js/3.69472628.chunk.js",
+    "static/js/3.69472628.chunk.js.map": "/FinancePeerChallengeFrontEnd/static/js/3.69472628.chunk.js.map",
     "index.html": "/FinancePeerChallengeFrontEnd/index.html",
-    "static/css/main.10535255.chunk.css.map": "/FinancePeerChallengeFrontEnd/static/css/main.10535255.chunk.css.map",
-    "static/js/2.a68f05aa.chunk.js.LICENSE.txt": "/FinancePeerChallengeFrontEnd/static/js/2.a68f05aa.chunk.js.LICENSE.txt"
+    "static/css/main.9e4e714a.chunk.css.map": "/FinancePeerChallengeFrontEnd/static/css/main.9e4e714a.chunk.css.map",
+    "static/js/2.c1cf1f0b.chunk.js.LICENSE.txt": "/FinancePeerChallengeFrontEnd/static/js/2.c1cf1f0b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.3a4a5da0.js",
-    "static/js/2.a68f05aa.chunk.js",
-    "static/css/main.10535255.chunk.css",
-    "static/js/main.02e55181.chunk.js"
+    "static/js/runtime-main.99cfd541.js",
+    "static/js/2.c1cf1f0b.chunk.js",
+    "static/css/main.9e4e714a.chunk.css",
+    "static/js/main.e8a8d59d.chunk.js"
   ]
 }
