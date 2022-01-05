@@ -12,8 +12,13 @@ const Header = (props) => {
 
   return (
     <div className="header-bg-container">
-      <Link to="/">Home</Link>
-      <button className="logout-button" type="button" onClick={removeJwtToken}>
+      <Link to="/" className="header-link-style">
+        Home
+      </Link>
+      <Link to="/about" className="header-link-style">
+        About
+      </Link>
+      <button className="button-style" type="button" onClick={removeJwtToken}>
         Logout
       </button>
     </div>

@@ -7,3 +7,18 @@
   align-items: center;
   background-color: #d3dedc;
 }
+
+.header-link-style {
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 600;
+  color: #041c32;
+}
+
+.header-link-style:active {
+  color: #ffcc1d;
+}
+
+.header-link-style:hover {
+  color: #ffcc1d;
+}

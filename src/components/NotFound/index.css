@@ -6,3 +6,33 @@
   justify-content: center;
   align-items: center;
 }
+
+.not-found-content-container {
+  border: 5px dotted #009dae;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.not-found-heading {
+  margin: 5px 0px 5px 0px;
+  color: #009dae;
+}
+
+.welcome-button {
+  border: 3px solid #f0a500;
+  color: #f0a500;
+  background-color: transparent;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.welcome-button:hover {
+  border: 3px solid #f90716;
+  color: #f90716;
+  background-color: transparent;
+}

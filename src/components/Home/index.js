@@ -22,7 +22,6 @@ class Home extends Component {
     apiStatus: apiConstants.initial,
     selectedFile: null,
     uploadResponse: "",
-    isUploadedSuccessfully: false,
     entriesList: [],
     newEntryId: "",
     newEntryUserId: "",
@@ -110,20 +109,25 @@ class Home extends Component {
     const uploadFileResponseData = await uploadFileResponse.json();
     this.setState({
       uploadResponse: uploadFileResponseData.msg,
-      isUploadedSuccessfully: true,
     });
   };
 
   selectAndUploadFileToServer = () => {
     return (
-      <div>
+      <div className="file-upload-container">
+        <h2 className="select-file-heading">Upload File</h2>
         <input
           type="file"
           name="sampleFile"
           accept="application/json"
+          className="file-input-style"
           onChange={this.selectFileToBeUploaded}
         />
-        <button type="submit" onClick={this.uploadSelectedFile}>
+        <button
+          type="button"
+          className="button-style"
+          onClick={this.uploadSelectedFile}
+        >
           upload
         </button>
       </div>
@@ -133,7 +137,7 @@ class Home extends Component {
   addNewEntryForm = () => {
     return (
       <>
-        <h1 className="app-heading">FinancePeer</h1>
+        <h1 className="add-entry-form-heading">Add Entry Here</h1>
         <form
           className="add-entry-form"
           onSubmit={this.onSubmitAddNewEntryForm}
@@ -198,26 +202,6 @@ class Home extends Component {
     const { entriesList } = this.state;
     return (
       <div className="home-list-container">
-        <Popup
-          className="popup-content"
-          trigger={
-            <button className="display-add-form-button">Add New Entry</button>
-          }
-          modal
-        >
-          {(close) => (
-            <div className="popup-content-container">
-              <button
-                className="popup-close-button"
-                type="button"
-                onClick={close}
-              >
-                <ImCross color="#ffffff" size="30px" />
-              </button>
-              {this.addNewEntryForm()}
-            </div>
-          )}
-        </Popup>
         <ul className="home-entries-list">
           {entriesList.map((eachItem) => (
             <ListItem
@@ -231,21 +215,53 @@ class Home extends Component {
     );
   };
 
-  render() {
-    const { uploadResponse, isUploadedSuccessfully } = this.state;
-    return (
-      <>
-        <Header />
-        <div className="home-bg-container">
-          <p>{uploadResponse}</p>
-          {isUploadedSuccessfully ? (
-            <button onClick={this.getEntriesData}>display uploaded data</button>
-          ) : (
-            this.selectAndUploadFileToServer()
-          )}
-          {this.renderEntriesList()}
+  addEntryPopup = () => (
+    <Popup
+      className="popup-content"
+      trigger={
+        <button className="button-style display-add-form-button">
+          Add New Entry
+        </button>
+      }
+      modal
+    >
+      {(close) => (
+        <div className="popup-content-container">
+          <button className="popup-close-button" type="button" onClick={close}>
+            <ImCross color="#ffffff" size="30px" />
+          </button>
+          {this.addNewEntryForm()}
         </div>
-      </>
+      )}
+    </Popup>
+  );
+
+  render() {
+    const { uploadResponse } = this.state;
+    const uploadedSuccessfully =
+      uploadResponse === "data of the file is uploaded into database...";
+    const failedToUpload = uploadResponse === "invalid file";
+    return (
+      <div className="home-bg-container">
+        <div className="home-header-container">
+          <Header />
+        </div>
+        <div className="file-input-entry-button-container">
+          <div className="file-input-container">
+            {this.selectAndUploadFileToServer()}
+            {uploadedSuccessfully ? (
+              <button className="button-style" onClick={this.getEntriesData}>
+                click here to display uploaded data
+              </button>
+            ) : null}
+            {failedToUpload ? (
+              <p className="alert-message-para">{uploadResponse}</p>
+            ) : null}
+          </div>
+          <div className="add-new-entry-popup">{this.addEntryPopup()}</div>
+        </div>
+        <div className="home-scroll-list">{this.renderEntriesList()}</div>
+      </div>
     );
   }
 }
