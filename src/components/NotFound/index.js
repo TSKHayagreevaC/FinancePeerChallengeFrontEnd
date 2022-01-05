@@ -1,9 +1,13 @@
+import { withRouter, Link } from "react-router-dom";
 import "./index.css";
 
 const NotFound = () => (
   <div className="not-found-bg-container">
-    <h1 className="not-found-heading">Page Not Found</h1>
+    <h1 className="not-found-heading">Welcome To FinancePeer Code Challenge</h1>
+    <Link to="/">
+      <button type="button">Please Click Here To Visit Website</button>
+    </Link>
   </div>
 );
 
-export default NotFound;
+export default withRouter(NotFound);
