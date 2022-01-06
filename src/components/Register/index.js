@@ -95,6 +95,13 @@ class Register extends Component {
         <h1 className="registration-response-heading">
           {registrationResponseMessage}
         </h1>
+        <button
+          type="button"
+          className="login-button"
+          onClick={this.loginAfterRegistration}
+        >
+          Login
+        </button>
       </div>
     );
   };
@@ -115,9 +122,9 @@ class Register extends Component {
 
   render() {
     return (
-      <div>
+      <div className="registration-bg-container">
         <div className="registration-form-container">
-          <h1 className="registration-form-heading">Register Here</h1>
+          <h1 className="registration-form-heading">Please Register Here</h1>
           <form
             className="registration-form"
             onSubmit={this.onSubmitRegistrationForm}

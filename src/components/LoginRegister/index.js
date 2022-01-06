@@ -31,21 +31,25 @@ class LoginRegister extends Component {
 
   renderLoginRegisterButtons = () => (
     <div className="register-login-button-container">
-      <h1 className="login-register-heading">Welcome To FinancePeer...</h1>
-      <h2 className="login-register-text">
+      <h1 className="login-register-heading">Welcome To FinancePeer</h1>
+      <hr className="hr-line-style" />
+      <h2 className="register-heading">
         Not Our Member Till Now ? Please Register Here...
       </h2>
       <button
         type="button"
-        className="register-login-button"
+        className="register-button"
         onClick={this.onClickDisplayRegisterForm}
       >
         Register
       </button>
-      <h2>Already A Member Of Us ? Please Login Here...</h2>
+      <hr className="hr-line-style" />
+      <h2 className="login-heading">
+        Already A Member Of Us ? Please Login Here...
+      </h2>
       <button
         type="button"
-        className="register-login-button"
+        className="login-button"
         onClick={this.onClickDisplayLoginForm}
       >
         Login

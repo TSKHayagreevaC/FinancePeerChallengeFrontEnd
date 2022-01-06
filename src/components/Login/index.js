@@ -16,9 +16,14 @@ class Login extends Component {
 
   renderLoader = () => (
     <div className="react-loader-spinner">
-      <Loader type="TailSpin" color="#00BFFF" height={80} width={80} />
+      <Loader type="TailSpin" color="red" height={80} width={80} />
     </div>
   );
+
+  renderLoginErrorMessage = () => {
+    const { loginResponseMessage } = this.state;
+    return <h1 className="login-response-heading">{loginResponseMessage}</h1>;
+  };
 
   onLoginFailure = (errorMessage) => {
     this.setState({
@@ -67,36 +72,36 @@ class Login extends Component {
   };
 
   renderLoginForm = () => {
-    const { showLoginErrorMessage, loginResponseMessage } = this.state;
+    const { showLoginErrorMessage } = this.state;
     return (
-      <div className="login-form-container">
-        <h1 className="login-form-heading">Login</h1>
-        <form className="login-form" onSubmit={this.onSubmitLoginForm}>
-          <label className="login-form-label" htmlFor="loginFormUsername">
-            Username
-          </label>
-          <input
-            type="text"
-            className="login-form-input"
-            id="loginFormUsername"
-            onChange={this.onChangeUsername}
-          />
-          <label className="login-form-label" htmlFor="loginFormPassword">
-            Password
-          </label>
-          <input
-            type="password"
-            className="login-form-input"
-            id="loginFormPassword"
-            onChange={this.onChangePassword}
-          />
-          <button type="submit" className="login-form-submit-button">
-            Login
-          </button>
-        </form>
-        {showLoginErrorMessage ? (
-          <h1 className="login-response-heading">{loginResponseMessage}</h1>
-        ) : null}
+      <div className="login-bg-container">
+        <div className="login-form-container">
+          <h1 className="login-form-heading">Login Here</h1>
+          <form className="login-form" onSubmit={this.onSubmitLoginForm}>
+            <label className="login-form-label" htmlFor="loginFormUsername">
+              Username
+            </label>
+            <input
+              type="text"
+              className="login-form-input"
+              id="loginFormUsername"
+              onChange={this.onChangeUsername}
+            />
+            <label className="login-form-label" htmlFor="loginFormPassword">
+              Password
+            </label>
+            <input
+              type="password"
+              className="login-form-input"
+              id="loginFormPassword"
+              onChange={this.onChangePassword}
+            />
+            <button type="submit" className="login-form-submit-button">
+              Login
+            </button>
+          </form>
+        </div>
+        {showLoginErrorMessage ? this.renderLoginErrorMessage() : null}
       </div>
     );
   };

@@ -1,0 +1,54 @@
+.register-login-button-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f7f7f7;
+}
+
+.login-register-heading {
+  color: #009dae;
+  text-align: center;
+  margin: 5px 0px 5px 0px;
+}
+
+.register-heading {
+  color: #c84b31;
+  text-align: center;
+  margin: 5px 0px 5px 0px;
+}
+
+.login-heading {
+  color: #116530;
+  text-align: center;
+  margin: 5px 0px 5px 0px;
+}
+
+.register-button {
+  background-color: transparent;
+  border: 3px solid #c84b31;
+  color: #c84b31;
+  font-weight: bold;
+  font-size: 22px;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.login-button {
+  background-color: transparent;
+  border: 3px solid #116530;
+  color: #116530;
+  font-weight: bold;
+  font-size: 22px;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.hr-line-style {
+  width: 80vw;
+  border: 2px solid black;
+  margin: 10px 0px 10px 0px;
+}
